@@ -21,25 +21,6 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 	</properties>
 
-	<profiles>
-		<profile>
-			<id>circleci</id>
-			<properties>
-				<!--suppress MavenModelInspection -->
-				<distribution.out.dir>${CIRCLE_ARTIFACTS}</distribution.out.dir>
-			</properties>
-			<build>
-				<plugins>
-					<plugin>
-						<groupId>org.eluder.coveralls</groupId>
-						<artifactId>coveralls-maven-plugin</artifactId>
-						<version>4.3.0</version>
-					</plugin>
-				</plugins>
-			</build>
-		</profile>
-	</profiles>
-
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -62,11 +43,11 @@
 			<version>${spring.version}</version>
 		</dependency>
 
-        <dependency>
-            <groupId>org.apache.derby</groupId>
-            <artifactId>derby</artifactId>
-            <version>${derby.version}</version>
-        </dependency>
+		<dependency>
+			<groupId>org.postgresql</groupId>
+			<artifactId>postgresql</artifactId>
+			<version>42.7.3</version>
+		</dependency>
 
 		<dependency>
 			<groupId>org.aspectj</groupId>

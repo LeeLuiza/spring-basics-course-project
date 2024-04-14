@@ -11,6 +11,9 @@ import com.yet.spring.core.beans.Event;
 import com.yet.spring.core.beans.EventType;
 import com.yet.spring.core.loggers.EventLogger;
 
+import static com.yet.spring.core.beans.EventType.DBINFO;
+import static com.yet.spring.core.beans.EventType.FILEINFO;
+
 public class App {
 
     private Client client;
@@ -20,7 +23,7 @@ public class App {
     private Map<EventType, EventLogger> loggers;
     
     private String startupMessage;
-    
+
     public static void main(String[] args) {
         ConfigurableApplicationContext ctx = new ClassPathXmlApplicationContext(
                 "spring.xml", "loggers.xml", "aspects.xml", "db.xml");
@@ -48,9 +51,15 @@ public class App {
         
         event = ctx.getBean(Event.class);
         logEvent(EventType.ERROR, event, "Some event for 2");
-        
+
         event = ctx.getBean(Event.class);
-        logEvent(null, event, "Some event for 3");
+        logEvent(DBINFO, event, "Some event for 3");
+
+        event = ctx.getBean(Event.class);
+        logEvent(FILEINFO, event, "Some event for 4");
+
+        event = ctx.getBean(Event.class);
+        logEvent(null, event, "Some event for 5");
     }
     
     public App() {}
